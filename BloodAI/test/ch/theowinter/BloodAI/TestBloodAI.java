@@ -20,6 +20,17 @@ public class TestBloodAI {
 	}
 	
 	@Test
+	public void testAnswerBye(){
+		boolean success = false;
+		String answer = ariyaa.compute("Bye", playername);
+		if (answer.equals("Cya later "+playername) || answer.equals("Bye "+playername) || answer.equals("Have fun "+playername)
+				|| answer.equals("Hope you'll be back soon "+playername)){
+			success = true;
+		}
+		assertTrue(success);
+	}
+	
+	@Test
 	public void testPersonalizer(){
 		assertEquals(("Random String Text "+playername+" END OF SENTENCE!"), ariyaa.personalize("Random String Text %player% END OF SENTENCE!", playername));
 	}
@@ -39,9 +50,6 @@ public class TestBloodAI {
 			result1 = ariyaa.choseRandom(testArray);
 			result2 = ariyaa.choseRandom(testArray);
 			result3 = ariyaa.choseRandom(testArray);
-			System.out.println(result1);
-			System.out.println(result2);
-			System.out.println(result3);
 		}
 		
 		if (result1.equals(testArray.get(0)) || result1.equals(testArray.get(1)) || result1.equals(testArray.get(2))){
