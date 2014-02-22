@@ -12,6 +12,7 @@ public class IntelligenceEngine {
 	//Bot Trigger & Reaction Maps
 	HashMap<String, Integer> triggerMap = new HashMap<String, Integer>();
 	HashMap<Integer, ArrayList<String>> reactionMap = new HashMap<Integer, ArrayList<String>>();
+	HashMap<String, ArrayList<String>> conversationState = new HashMap<String, ArrayList<String>>();
 	
 	
 	/**
@@ -29,9 +30,20 @@ public class IntelligenceEngine {
 	 * @param playername 
 	 */
 	public String compute(String input, String playername) {
-		ArrayList<String> possibleReactions = reactionMap.get(triggerMap.get(input));
-		
-		String reaction = choseRandom(possibleReactions);
+		String sanetizedInput = input.toLowerCase();
+		String reaction = "";
+
+		triggerConversation(sanetizedInput, playername);
+
+		//Continuing converation
+		if (conversationState.containsKey(playername)){
+			//TODO: actual convo stuff
+		}
+		//Normal reactions on correct sentences
+		else {
+			ArrayList<String> possibleReactions = reactionMap.get(triggerMap.get(sanetizedInput));
+			reaction = choseRandom(possibleReactions);	
+		}
 		reaction = personalize(reaction, playername);
 		MainBloodAI.demoOutput(input, reaction);
 		return reaction;
@@ -53,15 +65,33 @@ public class IntelligenceEngine {
 		return inputArray.get(randomValue);
 	}
 	
+	/**
+	 * @author theowinter 
+	 * trigger conversation with the bot.
+	 * @return 
+	 */
+	public void triggerConversation(String input, String playername){
+		//TODO: make more triggers possible
+		if (input.equals("ariyaa")){
+			ArrayList<String> conversationParams = new ArrayList<String>();
+			conversationParams.add("new");
+			conversationParams.add("neutral");
+			conversationState.put(playername, conversationParams);
+		}
+		else if(input.equals("ariyaa shutup") && conversationState.containsKey(playername)){
+			conversationState.remove(playername);
+		}
+	}
+	
 	public void initGreetings() {
 		// TRIGGERS
-		triggerMap.put("Hello", 1);
-		triggerMap.put("Hi", 1);
-		triggerMap.put("Greetings", 1);
-		triggerMap.put("Hiya", 1);
-		triggerMap.put("Howdy", 1);
-		triggerMap.put("Hey", 1);
-		triggerMap.put("Good day", 1);
+		triggerMap.put("hello", 1);
+		triggerMap.put("hi", 1);
+		triggerMap.put("greetings", 1);
+		triggerMap.put("hiya", 1);
+		triggerMap.put("howdy", 1);
+		triggerMap.put("hey", 1);
+		triggerMap.put("good day", 1);
 		
 		// REACTIONS
 		ArrayList<String> greetingReactions = new ArrayList<String>();
@@ -73,12 +103,12 @@ public class IntelligenceEngine {
 	
 	public void initBye() {
 		// TRIGGERS
-		triggerMap.put("Bye", 2);
-		triggerMap.put("Goodbye", 2);
-		triggerMap.put("Cya", 2);
+		triggerMap.put("bye", 2);
+		triggerMap.put("goodbye", 2);
+		triggerMap.put("cya", 2);
 		triggerMap.put("ciao", 2);
 		triggerMap.put("g2g", 2);
-		triggerMap.put("Cya later", 2);
+		triggerMap.put("cya later", 2);
 		
 		// REACTIONS
 		ArrayList<String> byeReactions = new ArrayList<String>();

@@ -12,7 +12,7 @@ public class TestBloodAI {
 	@Test
 	public void testAnswerGreeting(){
 		boolean success = false;
-		String answer = ariyaa.compute("Hello", playername);
+		String answer = ariyaa.compute("hello", playername);
 		if (answer.equals("Hello "+playername) || answer.equals("Hi "+playername) || answer.equals("Howdy "+playername)){
 			success = true;
 		}
