@@ -2,6 +2,7 @@ package ch.theowinter.BloodAI;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class IntelligenceEngine {
 	//Basic Bot Information
@@ -31,7 +32,7 @@ public class IntelligenceEngine {
 		ArrayList<String> possibleReactions = reactionMap.get(triggerMap.get(input));
 
 		String reaction = possibleReactions.get(0);
-		
+		reaction = personalize(reaction, playername);
 		MainBloodAI.demoOutput(input, reaction);
 		return reaction;
 	}
@@ -48,10 +49,27 @@ public class IntelligenceEngine {
 		
 		// REACTIONS
 		ArrayList<String> greetingReactions = new ArrayList<String>();
-		greetingReactions.add("Hello");
-		greetingReactions.add("Hi");
-		greetingReactions.add("Howdy");		
+		greetingReactions.add("Hello %player%");
+		greetingReactions.add("Hi %player%");
+		greetingReactions.add("Howdy %player%");		
 		reactionMap.put(1, greetingReactions);
+	}
+
+
+	public String personalize(String inputText, String playername) {
+		String output;
+		output = inputText.replace("%player%", playername);
+		return output;
+	}
+	
+	/**
+	 * @author theowinter 
+	 * Choses one random option from an array and returns that.
+	 */
+	public String choseRandom(ArrayList<String> inputArray){
+		Random rand = new Random(); 
+		int randomValue = rand.nextInt(inputArray.size());
+		return inputArray.get(randomValue);
 	}
 
 }
