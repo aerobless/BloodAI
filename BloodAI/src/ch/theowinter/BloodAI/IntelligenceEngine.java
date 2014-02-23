@@ -118,5 +118,47 @@ public class IntelligenceEngine {
 		byeReactions.add("Hope you'll be back soon %player%");
 		reactionMap.put(2, byeReactions);
 	}
-
+	
+	public void initBCloudInfo() {
+		// OP Stuff
+		triggerMap.put("can i have op", 3);
+		triggerMap.put("can i have creative", 3);
+		triggerMap.put("can i be op", 3);
+		triggerMap.put("can i have op", 3);
+		triggerMap.put("give me op", 3);
+		triggerMap.put("i want to be op", 3);
+		triggerMap.put("op me plz", 3);
+		triggerMap.put("can i get op", 3);
+		triggerMap.put("can i get creative", 3);
+		triggerMap.put("can you put me in gm1", 3);
+		// Reactions
+		ArrayList<String> opReactions = new ArrayList<String>();
+		opReactions.add("Sorry %player%, we don't op players or give them creative mode. bCloud is a survival server.");
+		opReactions.add("Please don't ask for op or creative mode %player%.");
+		reactionMap.put(3, opReactions);
+		
+		// Buying things
+		triggerMap.put("where's the shop", 4);
+		triggerMap.put("how to buy things", 4);
+		triggerMap.put("where can i buy stuff", 4);
+		triggerMap.put("where's the shop", 4);
+		triggerMap.put("where can i buy", 4);
+		// Reactions
+		ArrayList<String> buyReactions = new ArrayList<String>();
+		buyReactions.add("Do /warp shop to go to the shopping area. There you can buy lots of things");
+		buyReactions.add("The shopping area is at /warp shop.");
+		buyReactions.add("Buying things is easy, just go to /warp shop!");
+		buyReactions.add("If you like shopping a visit to /warp shop is a good way to spend time.");
+		reactionMap.put(4, buyReactions);
+		
+		//How to make a shop
+		triggerMap.put("how to make a shop", 5);
+		triggerMap.put("how can i make a shop", 5);
+		triggerMap.put("how do you make a shop", 5);
+		triggerMap.put("can i make a shop", 5);
+		// Reactions
+		ArrayList<String> makeShopReactions = new ArrayList<String>();
+		makeShopReactions.add("Making a shop is easy. Place a sign: 1st-line: empty, 2end-line: amount, 3d-line: B price, 4th-line: item-id or name");
+		reactionMap.put(4, buyReactions);
+	}
 }
